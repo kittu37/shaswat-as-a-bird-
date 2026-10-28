@@ -8,7 +8,7 @@ let state='ready',paused=false,muted=false,audioCtx,score=0,best=0,hot=0,t=0,tra
 let enemies=[],attackTimer=3;
 const bird={x:280,y:290,vy:0,r:24};
 try{best=Number(localStorage.getItem('snack-flight-best'))||0}catch{}el('best').textContent=best;
-const ready=Promise.all(['face','dead','blue','red','enemy'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{imgs[name]=im;resolve()};im.onerror=reject;im.src=`assets/${name}.png`;})));
+const ready=Promise.all(['face','blue','red','enemy'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{imgs[name]=im;el('play').textContent='Loading images '+Object.keys(imgs).length+'/4…';resolve()};im.onerror=reject;im.src=`assets/${name}.png`;})));
 function resize(){
  const mobile=window.innerWidth<=700,nextW=mobile?420:1100;
  if(canvas.width===nextW&&canvas.height===H)return;
